@@ -103,7 +103,11 @@ class Example extends React.Component {
         <h1>Project 4 React.js Example</h1>
 
         <div className="motto-update">
-          {/* Your problem #1 motto displaying and updating widget goes here */}
+            {name="Rauf "/* Your problem #1 motto displaying and updating widget goes here */}
+            {models = "Life"}
+            <input
+                type={"text"} value={this.models} onChange={this.handleChangeBound}
+            />
         </div>
 
         <p>
