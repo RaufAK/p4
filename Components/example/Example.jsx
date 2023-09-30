@@ -97,6 +97,7 @@ class Example extends React.Component {
     return retVal;
   }
 
+
   render() {
     return (
       <div className="container Example">
@@ -104,9 +105,11 @@ class Example extends React.Component {
 
         <div className="motto-update">
             {name="Rauf "/* Your problem #1 motto displaying and updating widget goes here */}
-            {models = "Life"}
+            <p>Motto: {this.state.inputValue}</p>
             <input
-                type={"text"} value={this.models} onChange={this.handleChangeBound}
+                type={"text"}
+                value={this.state.inputValue}
+                onChange={this.handleChangeBound}
             />
         </div>
 
