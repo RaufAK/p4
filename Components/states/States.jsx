@@ -10,12 +10,22 @@ class States extends React.Component {
   constructor(props) {
     super(props);
     console.log('window.models.states', window.models.states);
+    this.state = {
+      search: ''
+    };
   }
 
   render() {
+    const states = window.models.states || []
+    //const filteredStates = states.filter((state) => state.includes(this.state.search))
     return (
       <div>
-        Replace this with the code for Project 4, Problem 2
+        <input
+            type={"text"}
+            placeholder={"Enter a state"}
+            value={this.state.search}
+            onChange={(e) => this.setState({ search: e.target.value })}
+        />
       </div>
     );
   }
