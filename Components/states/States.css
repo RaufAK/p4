@@ -5,8 +5,20 @@ Since CSS uses a global name space for classes we should use names starting with
 states- here.
 */
 
-.States{
-    font-family: Open Sans, sans-serif;
-    font-size: 30px;
-    color: red;
+/*.States{*/
+/*    font-family: Open Sans, sans-serif;*/
+/*    font-size: 30px;*/
+/*    color: red;*/
+/*}*/
+
+ul {
+    background: whitesmoke;
+    padding: 20px;
+    list-style-type: circle;
+}
+
+ul li {
+    background: ghostwhite;
+    color: darkblue;
+    margin: 5px;
 }

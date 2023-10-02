@@ -1,59 +1,48 @@
 import React from 'react';
 import './States.css';
 
+/**
+ * Define States, a React component of Project 4, Problem 2. The model
+ * data for this view (the state names) is available at
+ * window.models.statesModel().
+ */
 class States extends React.Component {
   constructor(props) {
     super(props);
-    console.log('window.models.states', window.models.states);
     this.state = {
-      search: ''
+      states: window.models.states(),
+      inputValue: ''
     };
+    this.handleChangeBound = event => this.handleChange(event);
   }
 
-  // Function to filter states based on the search substring
-  filterStates() {
-    const { search } = this.state;
-    const states = window.models.states || [];
+  handleChange(event) {
+    this.setState({ inputValue: event.target.value });
+  }
 
-    if (search === '') {
-      return states; // Return all states when the search is empty
+  outOfBandJSX(filter) {
+    let optionJSX;
+    const listItems = this.state.states.filter(state => state.toLowerCase().includes(filter));
+    if (listItems.length === 0) {
+      optionJSX = <div>No matching states match filter criteria.</div>;
     }
-
-    // Filter states that contain the search substring (case-insensitive)
-    return states.filter((state) =>
-        state.toLowerCase().includes(search.toLowerCase())
+    for (let i = 0; i < listItems.length; i++) {
+      listItems[i] = <li key={i}>{listItems[i]}</li>;
+    }
+    return (
+        <div>
+          {optionJSX}
+          <ul>{listItems}</ul>
+        </div>
     );
   }
 
   render() {
-    const filteredStates = states.filter((state) =>
-        state.toLowerCase().includes(search.toLowerCase())
-    );
-
     return (
-        <div>
-          <input
-              type="text"
-              placeholder="Enter a state"
-              value={this.state.search}
-              onChange={(e) => this.setState({ search: e.target.value })}
-          />
-
-          {/* Display the substring used for filtering */}
-          {this.state.search && (
-              <div>Filtering by: {this.state.search}</div>
-          )}
-
-          <ul>
-            {filteredStates.length === 0 ? (
-                <div>No matching states found.</div>
-            ) : (
-                // Display the matching states in alphabetical order
-                filteredStates.map((state, index) => (
-                    <li key={index}>{state}</li>
-                ))
-            )}
-          </ul>
+        <div className="container States">
+          <label htmlFor="stateFilterId">State Filter: </label>
+          <input id="stateFilterId" type="text" value={this.state.inputValue} onChange={this.handleChangeBound} />
+          {this.outOfBandJSX(this.state.inputValue)}
         </div>
     );
   }
